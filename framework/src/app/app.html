@@ -1,0 +1,88 @@
+<div class="app-container">
+  <!-- Cabeçalho Principal -->
+  <header class="app-header">
+    <h1>Jogo da Velha</h1>
+    <p class="subtitle">Angular v17 • Arquitetura Declarativa</p>
+  </header>
+
+  <main class="game-container">
+    <!-- Indicador do Turno Atual (Data Binding Unidirecional) -->
+    <section class="turn-indicator-section" aria-label="Indicador de Turno">
+      <div class="turn-indicator-card">
+        <span>Vez de:</span>
+        <span id="turno-atual-display" [class.text-x]="turnoAtual === 'X'" [class.text-o]="turnoAtual === 'O'"
+          class="player-turn-badge">
+          {{ turnoAtual }}
+        </span>
+      </div>
+    </section>
+
+    <!-- Área Principal (Mensagens e Tabuleiro) -->
+    <section class="board-section" aria-label="Tabuleiro do Jogo">
+
+      <!-- Controle de Fluxo Declarativo do Angular 17 (@if / @else) -->
+      <div id="mensagem-status" class="status-message" role="status">
+        @if (!jogoAtivo) {
+        @if (vencedor) {
+        Jogador
+        <span [class.text-x]="vencedor === 'X'" [class.text-o]="vencedor === 'O'">
+          {{ vencedor }}
+        </span>
+        venceu! 🎉
+        } @else {
+        Deu <span class="text-tie">Velha</span>! O jogo empatou. 👵
+        }
+        } @else {
+        A partida está ativa!
+        }
+      </div>
+
+      <!-- Renderização do Grid 3x3 usando Loop Moderno (@for) -->
+      <div id="tabuleiro-grid" class="board-grid">
+        @for (casa of tabuleiro; track $index) {
+        <button class="cell" [class.cell-x]="casa === 'X'" [class.cell-o]="casa === 'O'"
+          [class.winner-cell]="casasVencedoras.includes($index)"
+          [attr.aria-label]="casa ? 'Casa ' + ($index + 1) + ' marcada por ' + casa : 'Casa ' + ($index + 1) + ' vazia'"
+          (click)="jogar($index)">
+          {{ casa }}
+        </button>
+        }
+      </div>
+    </section>
+
+    <!-- Placar de Vitórias e Empates (Interpolação direta do Estado) -->
+    <section class="score-section" aria-label="Placar">
+      <div class="score-card glass-panel">
+        <div class="score-item x-score">
+          <span class="score-label">Vitórias X</span>
+          <span id="placar-vitorias-x" class="score-value text-x">{{ placar.x }}</span>
+        </div>
+        <div class="score-item tie-score">
+          <span class="score-label">Velhas</span>
+          <span id="placar-empates" class="score-value text-tie">{{ placar.empates }}</span>
+        </div>
+        <div class="score-item o-score">
+          <span class="score-label">Vitórias O</span>
+          <span id="placar-vitorias-o" class="score-value text-o">{{ placar.o }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ações de Controle (Event Binding com clique) -->
+    <section class="controls-section" aria-label="Controles do Jogo">
+      <button id="botao-reiniciar" class="btn btn-primary" (click)="reiniciarPartida()"
+        aria-label="Iniciar uma nova partida mantendo o placar">
+        Nova Partida
+      </button>
+      <button id="botao-zerar-placar" class="btn btn-secondary" (click)="zerarJogoEPlacar()"
+        aria-label="Zerar o placar e limpar tabuleiro">
+        Zerar Placar
+      </button>
+    </section>
+  </main>
+
+  <!-- Rodapé Acadêmico -->
+  <footer class="app-footer">
+    <p>Trabalho de Programação para Internet (PPI)</p>
+  </footer>
+</div>

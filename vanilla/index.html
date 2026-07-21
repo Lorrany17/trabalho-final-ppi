@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jogo da Velha (Tic-Tac-Toe) moderno e responsivo com efeitos de neon e glassmorphism. Desenvolvido em Vanilla JavaScript para comparação técnica de arquiteturas de sistemas front-end.">
+    <meta name="theme-color" content="#0f172a">
+    <title>Jogo da Velha Premium | Tic-Tac-Toe Vanilla JS</title>
+    <!-- Importação de Fonte Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Cabeçalho Principal -->
+        <header class="app-header">
+            <h1>Jogo da Velha</h1>
+            <p class="subtitle">Vanilla JS • Arquitetura Sem Framework</p>
+        </header>
+
+        <main class="game-container">
+            <!-- Indicador do Turno Atual -->
+            <section class="turn-indicator-section" aria-label="Indicador de Turno">
+                <div class="turn-indicator-card">
+                    <span>Vez de:</span>
+                    <span id="turno-atual-display" class="player-turn-badge text-x">X</span>
+                </div>
+            </section>
+
+            <!-- Área Principal do Jogo (Mensagens e Tabuleiro) -->
+            <section class="board-section" aria-label="Tabuleiro do Jogo">
+                <div id="mensagem-status" class="status-message" role="status">
+                    <!-- Preenchido dinamicamente via JS -->
+                    A partida está ativa!
+                </div>
+
+                <div id="tabuleiro-grid" class="board-grid">
+                    <button class="cell" data-index="0" id="celula-0"
+                        aria-label="Casa superior esquerda vazia"></button>
+                    <button class="cell" data-index="1" id="celula-1" aria-label="Casa superior central vazia"></button>
+                    <button class="cell" data-index="2" id="celula-2" aria-label="Casa superior direita vazia"></button>
+                    <button class="cell" data-index="3" id="celula-3" aria-label="Casa média esquerda vazia"></button>
+                    <button class="cell" data-index="4" id="celula-4" aria-label="Casa central vazia"></button>
+                    <button class="cell" data-index="5" id="celula-5" aria-label="Casa média direita vazia"></button>
+                    <button class="cell" data-index="6" id="celula-6"
+                        aria-label="Casa inferior esquerda vazia"></button>
+                    <button class="cell" data-index="7" id="celula-7" aria-label="Casa inferior central vazia"></button>
+                    <button class="cell" data-index="8" id="celula-8" aria-label="Casa inferior direita vazia"></button>
+                </div>
+            </section>
+
+            <!-- Placar de Vitórias e Empates -->
+            <section class="score-section" aria-label="Placar">
+                <div class="score-card glass-panel">
+                    <div class="score-item x-score">
+                        <span class="score-label">Vitórias X</span>
+                        <span id="placar-vitorias-x" class="score-value text-x">0</span>
+                    </div>
+                    <div class="score-item tie-score">
+                        <span class="score-label">Velhas</span>
+                        <span id="placar-empates" class="score-value text-tie">0</span>
+                    </div>
+                    <div class="score-item o-score">
+                        <span class="score-label">Vitórias O</span>
+                        <span id="placar-vitorias-o" class="score-value text-o">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ações de Controle -->
+            <section class="controls-section" aria-label="Controles do Jogo">
+                <button id="botao-reiniciar" class="btn btn-primary"
+                    aria-label="Iniciar uma nova partida mantendo o placar">
+                    Nova Partida
+                </button>
+                <button id="botao-zerar-placar" class="btn btn-secondary"
+                    aria-label="Zerar o placar e limpar tabuleiro">
+                    Zerar Placar
+                </button>
+            </section>
+        </main>
+
+        <!-- Rodapé Acadêmico -->
+        <footer class="app-footer">
+            <p>Trabalho de Programação para Internet (PPI)</p>
+        </footer>
+    </div>
+
+    <!-- Script de Lógica e Renderização -->
+    <script src="script.js"></script>
+</body>
+
+</html>
